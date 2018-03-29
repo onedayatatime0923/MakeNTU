@@ -14,7 +14,7 @@ trainer = training_api.TrainingApi(training_key)
 predictor = prediction_endpoint.PredictionEndpoint(prediction_key)
 
 
-with open("./data/test/o-fb8f2a951aed49358dfd70859cc74890", mode="rb") as test_data:
+with open("./data/test/image1", mode="rb") as test_data:
     results = predictor.predict_image(projectID, test_data.read())
 
 # Display the results.
