@@ -3,13 +3,14 @@
 import pandas as pd
 import numpy as np
 from database import *
+from speak import speak
 
 
 class Wardrobe:
     def __init__(self):
         self.degree = [0, 0]
-        self.ClothesInfo = [pd.DataFrame(dbClothes, columns = ixClothes), 
-                            pd.DataFrame(dbPants, columns = ixPants)]
+        self.ClothesInfo = [pd.DataFrame(dbClothes).set_index([featureTitle[0]]).transpose(),  
+                            pd.DataFrame(dbPants).set_index([featureTitle[1]]).transpose()]
         self.ClothesPos = [{0: None, 72: None, 144: None, 216: None, 288: None},
                         {0: None, 72: None, 144: None, 216: None, 288: None}]
 
@@ -17,7 +18,8 @@ class Wardrobe:
         kind = self.clothesOpants(clothes)
         if self.ClothesPos[kind][degree] == None:
             self.ClothesPos[kind][degree] = clothes
-            print("New clothes", clothes, "is successfully added at degree", degree)
+            print("New clothes", clothes, "is added successfully at degree", degree)
+            #speak("這是件"+clothes+"，適合穿於"+self.ClothesInfo[kind].get_value(clothes, "Intro"))
             return True
         else:
             print("This position is occupied by another clothes")
@@ -48,27 +50,44 @@ class Wardrobe:
         self.degree[kind] = goal
 
     def clothesOpants(self, clothes):
-        if clothes in self.ClothesInfo[0]: return 0
+        if clothes in self.ClothesInfo[0].index.values: return 0
         else: return 1
 
     def chooseClothes(self, feature = []):
-        if (feature == []): feature = self.featureCollect()
-        clothesList = np.asarray(self.ClothesPos[0].values())
-        np.delete(clothesList, np.where(clothesList == None))
-        if feature[1] is "sunny":
-            pass
-        elif feature[1] is "rainy":
-            pass
-        else:
-            pass
-            
+        #1 collect all clothes in the wardrobe (in the clothesData series)
+        clothesList = list(self.ClothesPos[0].values())
+        clothesList = list(filter(lambda a: a != None, clothesList))
+        pantsList = list(self.ClothesPos[1].values())
+        pantsList = list(filter(lambda a: a != None, pantsList))
+        clothesData = (self.ClothesInfo[0].ix[clothesList])["Clothing"]
+        #2 kick out the clothes which are not suitable according to feature
+        keep = []
+        for i in range(clothesData.size):
+            clothes = clothesData.index.values[i]
+            if self.decideSuitable(clothes, 0, feature):
+                keep.append(i)
+        clothesData = clothesData.iloc[keep]
+        if clothesData.size == 0:
+            print("This wardrobe can not fit you, sorry")
+            return
+        
+        #3 kick out the corresponding pants which are not suitable according to feature
+        #PS should also check whether the pants are in the wardrobe or not
+        for i in range(clothesData.size):
+            for j in range(len(clothesData[i])):
+                clothes = clothesData[i][j]
+                if (clothes not in pantsList) or (not self.decideSuitable(clothes, 1, feature)):
+                    clothesData[i][j] = ""
+            clothesData[i] = list(filter(lambda a: a != "", clothesData[i]))
+        return clothesData
 
-    def choosePants(self):
-        pass
-        
-    def featureCollect(self):
-        temperature = input("Temperture (number): ")
-        sunnyOrainy = input("sunny or rainy").lower
-        occasion = input("Formal, Sport or Easy (string): ").lower
-        return [temperature, sunny, occasion]
-        
+    def decideSuitable(self, clothes, kind, ft):
+        cft = self.ClothesInfo[kind].loc[clothes]
+        if ft[1] != "" and ft[1] is not cft[1]: return False
+        if ft[0] != "" and ft[0] not in range(cft[0][0], cft[0][1]+1): return False
+        if ft[2] != "" and ft[2] not in cft[2]: return False
+        return True     
+
+'''
+wd = Wardrobe()
+'''
