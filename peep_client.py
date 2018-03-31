@@ -20,7 +20,7 @@ while True:
         with open('score.txt','rb') as f:
             for s in f.readlines():
                 print(s)
-                s=str(s)[2,-3].strip('\n').split(',')
+                s=str(s)[2:-3].strip('\n').split(',')
                 score.append(tuple(s))
         print(score)
                 
