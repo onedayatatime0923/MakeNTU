@@ -43,40 +43,43 @@ class Wardrobe:
         if clothes in self.ClothesInfo[0].index.values: return 0
         else: return 1
 
-    def chooseClothes(self, feature = []):
-        #1 collect all clothes in the wardrobe (in the clothesData series)
+    def chooseClothes(self, featureList):
+        feature = []
+        for i in range(3):
+            if featureList[i][1] > 0.5:
+                feature.append(featureList[i][0])
+            else:
+                break
+                               
         clothesList = list(self.ClothesPos[0].values())
-        clothesList = list(filter(lambda a: a != None, clothesList))
+        clothesList = list(set(list(filter(lambda a: a != None, clothesList))))
         pantsList = list(self.ClothesPos[1].values())
-        pantsList = list(filter(lambda a: a != None, pantsList))
-        clothesData = (self.ClothesInfo[0].ix[clothesList])["Clothing"]
-        #2 kick out the clothes which are not suitable according to feature
-        keep = []
-        for i in range(clothesData.size):
-            clothes = clothesData.index.values[i]
-            if self.decideSuitable(clothes, 0, feature):
-                keep.append(i)
-        clothesData = clothesData.iloc[keep]
-        if clothesData.size == 0:
+        pantsList = list(set(list(filter(lambda a: a != None, pantsList))))
+
+        clothesDict = {}
+        pantsDict = {}
+        for i in range(len(clothesList)):
+            clothesDict.update({clothesList[i], self.decideSuitable(clothesList[i], 0, feature)})
+        for i in range(len(pantsList)):
+            pantListDict.update({pantsList[i], self.decideSuitable(pantsList[i], 1, feature)})
+        if len(clothesDict) is 0:
             print("This wardrobe can not fit you, sorry")
-            return
-        
-        #3 kick out the corresponding pants which are not suitable according to feature
-        #PS should also check whether the pants are in the wardrobe or not
+            
+        clothesData = (self.ClothesInfo[0].ix[clothesList])["Clothing"]
         for i in range(clothesData.size):
             for j in range(len(clothesData[i])):
-                clothes = clothesData[i][j]
-                if (clothes not in pantsList) or (not self.decideSuitable(clothes, 1, feature)):
+                if not (pantsDict(clothesData[i][j])):
                     clothesData[i][j] = ""
             clothesData[i] = list(filter(lambda a: a != "", clothesData[i]))
         return clothesData
 
     def decideSuitable(self, clothes, kind, ft):
-        cft = self.ClothesInfo[kind].loc[clothes]
-        if ft[1] != "" and ft[1] is not cft[1]: return False
-        if ft[0] != "" and ft[0] not in range(cft[0][0], cft[0][1]+1): return False
-        if ft[2] != "" and ft[2] not in cft[2]: return False
-        return True     
+        cft = (self.ClothesInfo[kind].loc[clothes])[1]
+        for i in range(len(ft)):
+            if ft(i) not in cft:
+                return False
+        return True
+            
 
 '''
 wd = Wardrobe()
