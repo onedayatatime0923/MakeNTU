@@ -1,6 +1,7 @@
 import os 
 import sys
 from translate  import Tag , Volcabulary
+assert os and sys
 
 
 formal = Tag('formal',['婚禮','典禮','正式','嚴肅'])
@@ -50,7 +51,9 @@ vol.add_tag(warm)
 vol.add_tag(cool)
 vol.add_tag(cold)
 
+'''
 with os.popen('python2 speech_to_text.py '+sys.argv[1]) as pse:
     for s in pse:
         statement=s
 print(statement,vol.query(statement))
+'''
