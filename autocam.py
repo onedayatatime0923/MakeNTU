@@ -3,7 +3,7 @@ import RPi.GPIO as GPIO
 import os
 
 
-thresholdDist = 50
+thresholdDist = 20
 
 def distance():
   dist = []
