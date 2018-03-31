@@ -41,4 +41,4 @@ def distance():
   return (distance/2)
 
 while True: 
-  print(distance() + "cm")
+  print(str(distance()) + "cm")
