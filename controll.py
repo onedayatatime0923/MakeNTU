@@ -1,8 +1,15 @@
 #!/usr/bin/env python
 
 from wardrobe import Wardrobe
+import os 
+import sys
+from drive import RemoteManager
+import time
+assert sys and os
+
 
 wd = Wardrobe()
+rm = RemoteManager()
 
 wd.addClothes("球褲")
 wd.addClothes("短褲")
@@ -11,29 +18,35 @@ wd.addClothes("球褲")
 wd.addClothes("短褲")
 wd.addClothes("長褲")
 wd.addClothes("球褲")
-print(wd.ClothesPos[0])
-print(wd.ClothesPos[1])
 
 wd.addClothes("西裝外套")
 wd.addClothes("球衣")
 wd.addClothes("短襯衫")
-wd.addClothes("大一圍巾")
+wd.addClothes("大衣圍巾")
 wd.addClothes("吊嘎")
 wd.addClothes("外套")
+
 print(wd.ClothesPos[0])
 print(wd.ClothesPos[1])
 
-print('what features of the clothes you want to have? [18, "sunny"]')
-fit = wd.chooseClothes([18, "sunny", ""])
-print(fit)
-print("")
+while True:
+    if rm.listen("Recorded") == True:
+        time.sleep(11)
+        print('downloading')
+        score = []
+        with open('score.txt','rb') as f:
+            for s in f.readlines():
+                print(s)
+                s=str(s)[2:-3].strip('\n').split(',')
+                score.append((s[0],float(s[1])))
+        print(score)
 
-print('what features of the clothes you want to have? [45, "sunny"]')
-fit = wd.chooseClothes([45, "sunny", ""])
-print(fit)
-print("")
-
-print('what features of the clothes you want to have? [45, "sunny"]')
-fit = wd.chooseClothes(["", "", "easy"])
-print(fit)
-print("")
+        feature = wd.chooseClothes(score)
+        for i in range(1,len(feature)+1):
+            rm.put(feature[i][0],'s{}.JPG'.format(i))
+            rm.put(feature[i][1],'p{}.JPG'.format(i))
+        while True:
+            index = rm.listen("Index")
+            if index > 0:
+                wd.takeClothes(feature[index-1])
+                break
