@@ -21,7 +21,7 @@ while True:
             for s in f.readlines():
                 print(s)
                 s=str(s)[2:-3].strip('\n').split(',')
-                score.append(tuple(s))
+                score.append((s[0],float(s[1])))
         print(score)
                 
                 
