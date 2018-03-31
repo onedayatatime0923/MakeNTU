@@ -61,7 +61,7 @@ while True:
   latestDist.append(distance())
   print(latestDist)
   
-  nearNum = sum(latestDist < thresholdDist for i in latestDist)
+  nearNum = sum(i < thresholdDist for i in latestDist)
  
   if not detect and nearNum <= 1:
     detect = True
