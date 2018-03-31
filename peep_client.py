@@ -17,6 +17,7 @@ while True:
         time.sleep(5)
         print('downloading')
         rm.get('score','score.txt')
-        with open('score.txt','r') as f:
+        with open('score.txt','rb') as f:
+            print("kdfj")
             for i in f:
                 print(f.read())
