@@ -17,5 +17,5 @@ while True:
         time.sleep(5)
         print('downloading')
         with open('score.txt','rb') as f:
-            for i in f.readline():
+            for i in f.readlines():
                 print(i)
