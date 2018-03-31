@@ -4,6 +4,7 @@ import pandas as pd
 import numpy as np
 from database import *
 from speak import speak
+assert np
 
 
 class Wardrobe:

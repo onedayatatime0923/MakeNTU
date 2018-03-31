@@ -1,8 +1,15 @@
 import os 
 import sys
-from translate  import Tag 
 assert os and sys
 
+class Tag:
+    def __init__(self,name,feature):
+        self.feature=feature
+        self.name=name
+    def __str__(self):
+        return "{}".format(self.feature)
+    def __repr__(self):
+        return "{}".format(self.name)
 
 formal = Tag('formal',['婚禮','典禮','正式','嚴肅'])
 casual = Tag('casual',['休閒','一般','普通','舒適','舒服'])
@@ -41,6 +48,7 @@ dbPants = {
 ###################################################
 #            query                                #
 ###################################################
+'''
 vol= Volcabulary('./data/word2vec/zh.bin')
 vol.add_tag(formal)
 vol.add_tag(casual)
@@ -51,7 +59,6 @@ vol.add_tag(warm)
 vol.add_tag(cool)
 vol.add_tag(cold)
 
-'''
 with os.popen('python2 speech_to_text.py '+sys.argv[1]) as pse:
     for s in pse:
         statement=s
