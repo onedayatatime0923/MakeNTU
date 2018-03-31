@@ -23,7 +23,7 @@ def distance():
   # Allow module to settle
   time.sleep(0.2)
 
-  for i in range(3):
+  for i in range(5):
     # Set trigger to False (Low)
     GPIO.output(GPIO_TRIGGER, False)
 
@@ -54,7 +54,7 @@ def takePhoto(filename):
   os.system(action)
 
 detect = False
-latestDist = [100, 100, 100, 100, 100]
+latestDist = [100, 100, 100]
 
 while True:
   del(latestDist[0])
@@ -63,10 +63,10 @@ while True:
   
   nearNum = sum(i < thresholdDist for i in latestDist)
  
-  if not detect and nearNum >= 4:
+  if not detect and nearNum >= 2:
     detect = True
     #takePhoto("clothes")
-    print("takephonto")
+    print("takephoto")
     continue
 
   if detect and nearNum <= 1:
