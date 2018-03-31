@@ -6,9 +6,9 @@ casual=Tag('casual',['休閒','一般','普通','舒適','舒服'])
 sport=Tag('sport',['打球','運動','流汗','減肥','健身','球場','球隊','散步'])
 goodlooking=Tag('goodlooking',['好看','流行'])
 korean=Tag('korean',['韓系','韓流','歐爸','大衣'])
-warm=Tag('warm',['悶','熱','炎熱','太陽'])
-cool=Tag('cool',['風','涼爽','清新'])
-cold=Tag('cold',['寒流','寒冷','寒','凍'])
+warm=Tag('warm',['悶','熱','炎熱','太陽','不冷'])
+cool=Tag('cool',['風','涼爽','清新','不熱'])
+cold=Tag('cold',['寒流','寒','冷','凍'])
 
 
 featureTitle = [["TempRange", "Sun_Rain", "Occasion", "Clothing", "Intro"],
@@ -47,11 +47,17 @@ vol.add_tag(warm)
 vol.add_tag(cool)
 vol.add_tag(cold)
 
-statement='我想去打球'
+statement='今天不熱'
 print(statement,vol.query(statement))
 statement='我今天要去找女友'
 print(statement,vol.query(statement))
 statement='今天我爸結婚'
 print(statement,vol.query(statement))
 statement='今天好悶，可是我想去約會'
+print(statement,vol.query(statement))
+statement='我今天他媽想出去玩，可是他媽好熱'
+print(statement,vol.query(statement))
+statement='幹，給我一套衣服'
+print(statement,vol.query(statement))
+statement='今天我想去打球，可是怎麼這麼冷'
 print(statement,vol.query(statement))

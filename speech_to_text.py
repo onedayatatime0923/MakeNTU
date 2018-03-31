@@ -22,8 +22,7 @@ class Microsoft_ASR():
         #print "Got Token: ", self.token
         return True
 
-    def transcribe(self,speech_file):
-
+    def transcribe(self,speech_file,in_file):
         # Grab the token if we need it
         if self.token is None:
             #print "No Token... Getting one"
@@ -41,7 +40,7 @@ class Microsoft_ASR():
                   'requestid': uuid.uuid4(),
                   'device.os': 'linux'}
         content_type = "audio/wav; codec=""audio/pcm""; samplerate=16000"
-        test_file = input() 
+        test_file = in_file 
         def stream_audio_file(speech_file, chunk_size=1024):
             with open(test_file, 'rb') as f:
                 while 1:
@@ -62,6 +61,6 @@ class Microsoft_ASR():
 if __name__ == "__main__":
     ms_asr = Microsoft_ASR()
     ms_asr.get_speech_token()
-    text, confidence = ms_asr.transcribe('Your Wav File Here')
+    text, confidence = ms_asr.transcribe('Your Wav File Here','./007.wav')
     print "Text: ", text
     print "Confidence: ", confidence

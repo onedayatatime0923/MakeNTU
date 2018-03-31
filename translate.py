@@ -20,7 +20,7 @@ class Volcabulary:
             score[i]=self.max_simularity(i,text)
         return sorted(score.items(), key=lambda x: x[1],reverse=True)
     def max_simularity(self,tag,text):
-        text=list(jieba.cut(text))
+        text=list(jieba.cut(text))#+list(text)
         scores=[]
         for i in text:
             for j in tag.feature:
