@@ -2,13 +2,13 @@ import requests
 import httplib
 import uuid
 import json
+import sys
 
 class Microsoft_ASR():
     def __init__(self):
         self.sub_key = '0b24bf23fe0f4fa084460780e5e93a75'
         self.token = None
         pass
-
     def get_speech_token(self):
         FetchTokenURI = "/sts/v1.0/issueToken"
         header = {'Ocp-Apim-Subscription-Key': self.sub_key}
@@ -21,7 +21,6 @@ class Microsoft_ASR():
         self.token = str_data
         #print "Got Token: ", self.token
         return True
-
     def transcribe(self,speech_file,in_file):
         # Grab the token if we need it
         if self.token is None:
@@ -40,7 +39,7 @@ class Microsoft_ASR():
                   'requestid': uuid.uuid4(),
                   'device.os': 'linux'}
         content_type = "audio/wav; codec=""audio/pcm""; samplerate=16000"
-        test_file = in_file 
+        test_file = in_file
         def stream_audio_file(speech_file, chunk_size=1024):
             with open(test_file, 'rb') as f:
                 while 1:
@@ -61,6 +60,7 @@ class Microsoft_ASR():
 if __name__ == "__main__":
     ms_asr = Microsoft_ASR()
     ms_asr.get_speech_token()
-    text, confidence = ms_asr.transcribe('Your Wav File Here','./007.wav')
-    print "Text: ", text
-    print "Confidence: ", confidence
+    text, confidence = ms_asr.transcribe('Your Wav File Here',sys.argv[1])
+    print text
+    #print "Text: ", text
+    #print "Confidence: ", confidence

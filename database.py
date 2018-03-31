@@ -1,4 +1,6 @@
 #!/usr/bin/env python
+import os 
+import sys
 from translate  import Tag , Volcabulary
 
 formal=Tag('formal',['婚禮','典禮','正式','嚴肅'])
@@ -47,17 +49,9 @@ vol.add_tag(warm)
 vol.add_tag(cool)
 vol.add_tag(cold)
 
-statement='今天不熱'
-print(statement,vol.query(statement))
-statement='我今天要去找女友'
-print(statement,vol.query(statement))
-statement='今天我爸結婚'
-print(statement,vol.query(statement))
-statement='今天好悶，可是我想去約會'
-print(statement,vol.query(statement))
-statement='我今天他媽想出去玩，可是他媽好熱'
-print(statement,vol.query(statement))
-statement='幹，給我一套衣服'
-print(statement,vol.query(statement))
-statement='今天我想去打球，可是怎麼這麼冷'
-print(statement,vol.query(statement))
+print('python2 speech_to_text.py '+sys.argv[1])
+with os.popen('python2 speech_to_text.py '+sys.argv[1]) as pse:
+    for s in pse:
+        print(s)
+        statement=s
+        print(statement,vol.query(statement))
