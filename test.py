@@ -9,7 +9,7 @@ assert ImageUrlCreateEntry and models
 # Replace with a valid key
 training_key = "b43835f3fb8e4552ba7e3a435c711a96"
 prediction_key = "f5d2cb8353664dc0aa7a8be0d729a832"
-projectID = "4a996f7b-b963-4005-ac8d-8edeb4586798"
+projectID = "0fedcb43-1707-406d-9072-899c06d85a3c"
 test_dir = "./data/test/"
 
 trainer = training_api.TrainingApi(training_key)
