@@ -66,9 +66,10 @@ while True:
   if not detect and nearNum >= 4:
     detect = True
     #takePhoto("clothes")
-    print("takephone")
+    print("takephonto")
     continue
 
   if detect and nearNum <= 1:
     detect = False
 
+  time.sleep(1)
