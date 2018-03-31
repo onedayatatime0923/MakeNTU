@@ -61,6 +61,6 @@ if __name__ == "__main__":
     ms_asr = Microsoft_ASR()
     ms_asr.get_speech_token()
     text, confidence = ms_asr.transcribe('Your Wav File Here',sys.argv[1])
-    print text
+    print text.encode('utf-8')
     #print "Text: ", text
     #print "Confidence: ", confidence

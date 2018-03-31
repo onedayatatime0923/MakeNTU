@@ -49,9 +49,7 @@ vol.add_tag(warm)
 vol.add_tag(cool)
 vol.add_tag(cold)
 
-print('python2 speech_to_text.py '+sys.argv[1])
 with os.popen('python2 speech_to_text.py '+sys.argv[1]) as pse:
     for s in pse:
-        print(s)
         statement=s
         print(statement,vol.query(statement))
