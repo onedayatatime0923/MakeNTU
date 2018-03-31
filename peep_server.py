@@ -37,6 +37,6 @@ while True:
         print(score)
         with open('score.txt','w') as f:
             for i in score:
-                f.write('{},{}'.format(i[0].name,i[1]))
+                f.write('{},{}\n'.format(i[0].name,i[1]))
                 print('{},{}'.format(i[0].name,i[1]))
         rm.put('score.txt','score')
