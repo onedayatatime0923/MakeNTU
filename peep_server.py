@@ -26,13 +26,14 @@ rm=RemoteManager()
 
 while True:
     if rm.listen()==True:
-        #time.sleep(2.5)
+        time.sleep(1)
         print('downloading')
         rm.get('recording1.3gp','./data/record/record.3gp')
         os.system('cd ./data/record/ && ffmpeg -loglevel panic -y -i record.3gp -crf 18 record.wav' )
         with os.popen('python2 speech_to_text.py ./data/record/record.wav') as pse:
             for s in pse:
                 statement=s
+        print(statement)
         score=vol.query(statement)
         print(score)
         with open('score.txt','w') as f:
