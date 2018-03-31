@@ -28,9 +28,8 @@ while True:
                 
         #calculating feature
                 
-        '''
         feature=0
-        for i in range(1,len(feature)+1):
+        for i in range(1,len(feature)+1)
             rm.put(feature[i][0],'s{}.JPG'.format(i))
             rm.put(feature[i][1],'p{}.JPG'.format(i))
         while  True:
@@ -41,4 +40,3 @@ while True:
 
 
 
-        '''

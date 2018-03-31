@@ -1,9 +1,9 @@
-from gensim.models import Word2Vec
-from gensim.models import KeyedVectors
+#from gensim.models import Word2Vec
+#from gensim.models import KeyedVectors
 from sklearn.metrics.pairwise import cosine_similarity
 import jieba
 import numpy as np
-assert Word2Vec and KeyedVectors and jieba and cosine_similarity and np
+assert jieba and cosine_similarity and np
 
 
 class Volcabulary:
