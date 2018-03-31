@@ -5,7 +5,7 @@ from database import formal,casual,sport,goodlooking,korean,warm,cool,cold
 from drive import RemoteManager
 import time
 import numpy as np
-assert Tag and sys
+assert Tag and sys and np
 
 
 
@@ -33,6 +33,10 @@ while True:
         with os.popen('python2 speech_to_text.py ./data/record/record.wav') as pse:
             for s in pse:
                 statement=s
-        np.save('score.npy',np.array(vol.query(statement)))
-        rm.put('./score.npy','/')
-        rm.ls()
+        score=vol.query(statement)
+        print(score)
+        with open('score.txt','w') as f:
+            for i in score:
+                f.write('{},{}'.format(i[0].name,i[1]))
+                print('{},{}'.format(i[0].name,i[1]))
+        rm.put('score.txt','score')

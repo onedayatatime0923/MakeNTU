@@ -4,7 +4,7 @@ from translate  import Tag , Volcabulary
 from database import formal,casual,sport,goodlooking,korean,warm,cool,cold
 from drive import RemoteManager
 import time
-assert Tag and sys
+assert Tag and sys and os
 
 
 
@@ -25,11 +25,9 @@ rm=RemoteManager()
 
 while True:
     if rm.listen()==True:
-        time.sleep(2.5)
+        time.sleep(5)
         print('downloading')
-        rm.get('recording1.3gp','./data/record/record.3gp')
-        os.system('cd ./data/record/ && ffmpeg -loglevel panic -y -i record.3gp -crf 18 record.wav' )
-        with os.popen('python2 speech_to_text.py ./data/record/record.wav') as pse:
-            for s in pse:
-                statement=s
-        print(statement,vol.query(statement))
+        rm.get('score','score.txt')
+        with open('score.txt','r') as f:
+            for i in f:
+                print(f.read())
