@@ -1,4 +1,3 @@
-
 from gensim.models import Word2Vec
 from gensim.models import KeyedVectors
 from sklearn.metrics.pairwise import cosine_similarity
@@ -40,17 +39,3 @@ class Tag:
         return "{}".format(self.feature)
     def __repr__(self):
         return "{}".format(self.name)
-
-
-if __name__ == '__main__':
-    vol= Volcabulary('./data/word2vec/zh.bin')
-    vol.add_tag(Tag(['婚禮','喪禮','典禮','正式','嚴肅']))
-    vol.add_tag(Tag(['打球','運動','流汗','減肥','健身','球場','球隊']))
-    vol.add_tag(Tag(['休閒','一般','普通','舒適','舒服','散步','約會','好看','悶','','熱','悶熱','炎熱']))
-    vol.add_tag(Tag(['寒流','寒冷','寒','凍','保暖','保溫','韓系','韓流','約會','好看','正式','流行']))
-    vol.add_tag(Tag(['悶','熱','炎熱','休閒','健身','肌肉','曬黑','曬太陽']))
-    vol.add_tag(Tag(['寒流','寒冷','寒','凍','約會','好看','正式','流行','防風']))
-
-    print(vol.query('我想去打球'))
-    print(vol.query('我今天要去找女友'))
-    print(vol.query('今天我爸結婚'))

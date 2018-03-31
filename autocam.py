@@ -69,8 +69,7 @@ while True:
  
   if not detect and nearNum >= 2:
     detect = True
-    #takePhoto("clothes")
-    print("takephoto")
+    takePhoto("clothes")
     continue
 
   if detect and nearNum <= 1:

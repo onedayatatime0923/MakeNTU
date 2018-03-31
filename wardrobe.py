@@ -11,38 +11,28 @@ class Wardrobe:
         self.degree = [0, 0]
         self.ClothesInfo = [pd.DataFrame(dbClothes).set_index([featureTitle[0]]).transpose(),  
                             pd.DataFrame(dbPants).set_index([featureTitle[1]]).transpose()]
-        self.ClothesPos = [{0: None, 72: None, 144: None, 216: None, 288: None},
-                        {0: None, 72: None, 144: None, 216: None, 288: None}]
-
-    def setClothes(self, clothes, degree):
-        kind = self.clothesOpants(clothes)
-        if self.ClothesPos[kind][degree] == None:
-            self.ClothesPos[kind][degree] = clothes
-            print("New clothes", clothes, "is added successfully at degree", degree)
-            #speak("這是件"+clothes+"，適合穿於"+self.ClothesInfo[kind].get_value(clothes, "Intro"))
-            return True
-        else:
-            print("This position is occupied by another clothes")
-            return False
-
+        self.ClothesPos = [{0: [None, 0], 60: [None, 0], 120: [None, 0], 180: [None, 0], 240: [None, 0], 300: [None, 0]},
+                           {0: [None, 0], 60: [None, 0], 120: [None, 0], 180: [None, 0], 240: [None, 0], 300: [None, 0]}]
+        self.id = 0
+        
     def addClothes(self, clothes):
         kind = self.clothesOpants(clothes)
         degree = self.findSpace(kind)
         if degree == -1:
             print("Wardrobe of", kind, "is full. Add fail")
         else:
-            result = self.setClothes(clothes, degree)
-            if result: self.moveto(kind, degree)
+            self.moveto(kind, degree)
+            self.ClothesPos[kind][degree][0] = clothes
+            self.ClothesPos[kind][degree][1] = self.id
+            self.id += 1
+            print("New clothes", clothes, "is added successfully at degree", degree)
+            speak("這是件"+clothes+"，適合穿於"+self.ClothesInfo[kind].get_value(clothes, "Intro"))
         
     def findSpace(self, kind):
-        degree = self.degree[kind]
-        canditate = [degree, (degree+72)%360, (degree+144)%360, (degree+216)%360, (degree+288)%360]
-        if   self.ClothesPos[kind][canditate[0]] == None: pass
-        elif self.ClothesPos[kind][canditate[1]] == None: degree = canditate[1]
-        elif self.ClothesPos[kind][canditate[2]] == None: degree = canditate[2]
-        elif self.ClothesPos[kind][canditate[3]] == None: degree = canditate[3]
-        elif self.ClothesPos[kind][canditate[4]] == None: degree = canditate[4]
-        else: degree = -1
+        canditate = [degree, (degree+60)%360, (degree+300)%360, (degree+120)%360, (degree+240)%360, (degree+180)%360]
+        for i in range(6):
+            if self.ClothesPos[kind][canditate[i]][0] == None:
+                return canditate[i]
         return degree
 
     def moveto(self, kind, goal):
