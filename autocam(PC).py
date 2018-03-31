@@ -1,6 +1,6 @@
 import time
 import RPi.GPIO as GPIO
-import os
+import cv2
 
 
 thresholdDist = 30
@@ -50,8 +50,12 @@ def distance():
   return sum(dist)/len(dist)
 
 def takePhoto(filename):
-  action = "fswebcam -p YUYV " + filename + ".jpg"
-  os.system(action)
+    cap = cv2.VideoCapture(0)
+    ret, frame = cap.read()
+    cv2.imwrite(filename+".jpeg", frame)
+    cap.release()
+    cv2.destroyAllWindows()
+
 
 detect = False
 latestDist = [100, 100, 100, 100, 100]
