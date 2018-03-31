@@ -3,7 +3,7 @@ import RPi.GPIO as GPIO
 import os
 
 
-thresholdDist = 30
+thresholdDist = 50
 
 def distance():
   dist = []
@@ -23,7 +23,7 @@ def distance():
   # Allow module to settle
   time.sleep(0.2)
 
-  for i in range(4):
+  for i in range(3):
     # Set trigger to False (Low)
     GPIO.output(GPIO_TRIGGER, False)
 
@@ -63,12 +63,12 @@ while True:
   
   nearNum = sum(i < thresholdDist for i in latestDist)
  
-  if not detect and nearNum <= 1:
+  if not detect and nearNum >= 4:
     detect = True
     #takePhoto("clothes")
     print("takephone")
     continue
 
-  if detect and nearNum == 5:
+  if detect and nearNum <= 1:
     detect = False
 
