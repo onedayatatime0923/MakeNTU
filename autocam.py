@@ -21,7 +21,7 @@ def distance():
   GPIO.setup(GPIO_ECHO,GPIO.IN)      # Echo
 
   # Allow module to settle
-  time.sleep(0.2)
+  time.sleep(0.5)
 
   for i in range(5):
     # Set trigger to False (Low)
@@ -45,6 +45,8 @@ def distance():
     # multiplied by the speed of sound (cm/s)
     distance = elapsed * 34000/2
     dist.append(distance)
+
+    time.sleep(0.2)
 
   GPIO.cleanup()  
   return sum(dist)/len(dist)
