@@ -14,8 +14,8 @@ rm=RemoteManager()
 
 while True:
     if rm.listen()==True:
-        time.sleep(20)
+        time.sleep(5)
         print('downloading')
         with open('score.txt','rb') as f:
-            for i in f:
-                print(f.read())
+            for i in f.readline():
+                print(i)

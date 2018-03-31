@@ -5,7 +5,7 @@ from database import formal,casual,sport,goodlooking,korean,warm,cool,cold
 from drive import RemoteManager
 import time
 import numpy as np
-assert Tag and sys and np
+assert Tag and sys and np and time
 
 
 
