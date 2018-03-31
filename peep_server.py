@@ -26,7 +26,7 @@ rm=RemoteManager()
 
 while True:
     if rm.listen()==True:
-        time.sleep(2.5)
+        #time.sleep(2.5)
         print('downloading')
         rm.get('recording1.3gp','./data/record/record.3gp')
         os.system('cd ./data/record/ && ffmpeg -loglevel panic -y -i record.3gp -crf 18 record.wav' )
@@ -39,4 +39,4 @@ while True:
             for i in score:
                 f.write('{},{}\n'.format(i[0].name,i[1]))
                 print('{},{}'.format(i[0].name,i[1]))
-        rm.put('score.txt','score')
+        os.system('sshpass -p raspberry scp score.txt pi@10.1.30.178:MakeNTU')
