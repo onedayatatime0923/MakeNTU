@@ -18,8 +18,8 @@ class RemoteManager:
     def put(self,fi,path):
         with open(fi, 'rb') as f:
             self.dbx.files_upload(f.read(), '/'+path,mode=dropbox.files.WriteMode('overwrite', None))
-    def listen(self):
-        r = requests.post(self.url+self.GET_VALUE, {"tag":"Recorded"})
+    def listen(self,option):
+        r = requests.post(self.url+self.GET_VALUE, {"tag":option})
         text = r.json()
         req = bool(int(text[2][1]))
         return req

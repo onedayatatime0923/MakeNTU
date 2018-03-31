@@ -7,7 +7,7 @@ assert os and sys
 formal = Tag('formal',['婚禮','典禮','正式','嚴肅'])
 casual = Tag('casual',['休閒','一般','普通','舒適','舒服'])
 sport = Tag('sport',['打球','運動','流汗','減肥','健身','球場','球隊','散步'])
-goodlooking = Tag('goodlooking',['約會','女朋友','好看','流行'])
+goodlooking = Tag('goodlooking',['約會','約','女朋友','好看','流行'])
 korean = Tag('korean',['韓系','韓流','歐爸','大衣'])
 warm = Tag('warm',['悶','熱','炎熱','太陽'])
 cool = Tag('cool',['風','涼爽','清新'])

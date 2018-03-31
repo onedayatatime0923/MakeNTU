@@ -25,7 +25,7 @@ vol.add_tag(cold)
 rm=RemoteManager()
 
 while True:
-    if rm.listen()==True:
+    if rm.listen("Recorded")==True:
         time.sleep(1)
         print('downloading')
         rm.get('recording1.3gp','./data/record/record.3gp')
