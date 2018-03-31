@@ -21,15 +21,15 @@ def distance():
   GPIO.setup(GPIO_ECHO,GPIO.IN)      # Echo
 
   # Allow module to settle
-  time.sleep(0.5)
+  time.sleep(0.2)
 
-  for i in range(5):
+  for i in range(3):
     # Set trigger to False (Low)
     GPIO.output(GPIO_TRIGGER, False)
 
     # Send 10us pulse to trigger
     GPIO.output(GPIO_TRIGGER, True)
-    time.sleep(0.00001)
+    time.sleep(0.0001)
     GPIO.output(GPIO_TRIGGER, False)
     start = time.time()
     while GPIO.input(GPIO_ECHO)==0:
@@ -46,7 +46,9 @@ def distance():
     distance = elapsed * 34000/2
     dist.append(distance)
 
-    time.sleep(0.2)
+    time.sleep(0.1)
+
+  print(dist)
 
   GPIO.cleanup()  
   return sum(dist)/len(dist)
@@ -75,3 +77,5 @@ while True:
     detect = False
 
   time.sleep(1)
+
+  print("")
