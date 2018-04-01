@@ -73,8 +73,6 @@ class Wardrobe:
         for i in range(len(clothesList)):
             if self.decideSuitable(clothesList[i], 0, feature):
                 clothesKeep.append(clothesList[i])
-        if len(clothesKeep) is 0:
-            clothesKeep = clothesList
         for i in range(len(pantsList)):
             if self.decideSuitable(pantsList[i], 1, feature):
                 pantsKeep.append(pantsList[i])
@@ -105,7 +103,10 @@ class Wardrobe:
         cft = (self.ClothesInfo[kind].loc[clothes])[1]
         print("cft ")
         print(cft)
+        print("ft")
+        print(ft)
         for i in range(len(ft)):
             if ft[i] not in cft:
+                print("ft: " + str(ft[i]) + " cft: " + str(cft))
                 return False
         return True
