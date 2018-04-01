@@ -28,19 +28,19 @@ featureTitle = [["TempRange", "Occasion", "Clothing", "Intro"],
 
 ixClothes = ["西裝外套", "球衣", "短襯衫", "大衣圍巾", "吊嘎", "外套"]
 dbClothes = {
-    "西裝外套": [[5, 35], [formal, warm, cool, cold], ["長褲"], "正式場合"],
-    "球衣": [[22, 35], [sport, casual, warm, cool], ["球褲", "短褲", "長褲"], "球場"],
-    "短襯衫": [[20, 35], [formal, casual, goodlooking, warm, cool], ["球褲", "短褲", "長褲"], "輕鬆卻不失打扮的場合"],
-    "大衣圍巾": [[5, 18], [goodlooking, korean, cool, cold], ["長褲"], "需要打扮自我的流行場合"],
-    "吊嘎": [[25, 35], [casual, sport, warm, cool], ["球褲", "短褲"], "很熱的天氣"],
-    "外套": [[5, 17], [casual, goodlooking, cold], ["長褲"], "偏冷的天氣"],
+    "西裝外套": [[5, 35], ['formal', 'warm', 'cool', 'cold'], ["長褲"], "正式場合"],
+    "球衣": [[22, 35], ['sport', 'casual', 'warm', 'cool'], ["球褲", "短褲", "長褲"], "球場"],
+    "短襯衫": [[20, 35], ['formal', 'casual', 'goodlooking', 'warm', 'cool'], ["球褲", "短褲", "長褲"], "輕鬆卻不失打扮的場合"],
+    "大衣圍巾": [[5, 18], ['goodlooking', 'korean', 'cool', 'cold'], ["長褲"], "需要打扮自我的流行場合"],
+    "吊嘎": [[25, 35], ['casual', 'sport', 'warm', 'cool'], ["球褲", "短褲"], "很熱的天氣"],
+    "外套": [[5, 17], ['casual', 'goodlooking', 'cold'], ["長褲"], "偏冷的天氣"],
 }
 
 ixPants = ["球褲", "短褲", "長褲"]
 dbPants = {
-    "球褲": [[22, 35], [sport, casual, warm, cool], "球場"],
-    "短褲": [[20, 35], [formal, casual, goodlooking, warm, cool], "偏熱的天氣"],
-    "長褲": [[5, 22], [formal, casual, goodlooking, korean, cool, cold], "偏冷的天氣"],
+    "球褲": [[22, 35], ['sport', 'casual', 'warm', 'cool'], "球場"],
+    "短褲": [[20, 35], ['formal', 'casual', 'goodlooking', 'warm', 'cool'], "偏熱的天氣"],
+    "長褲": [[5, 22], ['formal', 'casual', 'goodlooking', 'korean', 'cool', 'cold'], "偏冷的天氣"],
 }
 
 
