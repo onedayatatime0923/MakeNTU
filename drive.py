@@ -22,7 +22,7 @@ class RemoteManager:
     def listen(self,option):
         r = requests.post(self.url+self.GET_VALUE, {"tag":option})
         text = r.json()
-        print(text)
+        #print(text)
         req = int(text[2][1])
         return req
     def say(self,option,v):
