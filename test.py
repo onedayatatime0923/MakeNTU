@@ -21,7 +21,7 @@ with open(sys.argv[1], mode="rb") as test_data:
     results = predictor.predict_image(projectID, test_data.read())
 # Display the results.
 #print('image {}'.format(sys.argv[1]))
-print(results.predictions[0].tag)
+print(results.predictions[0].tag,end='')
 #for prediction in results.predictions:
     #print ("\t" + prediction.tag + ": {0:.2f}%".format(prediction.probability * 100))
 
