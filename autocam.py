@@ -55,7 +55,7 @@ def distance():
   return sum(dist)/len(dist)
 
 def takePhoto(filename):
-  action = "fswebcam -p YUYV data/test/" + filename + ".jpg"
+  action = "fswebcam -p YUYV data/test/" + str(filename) + ".jpg"
   os.system(action)
 
 
