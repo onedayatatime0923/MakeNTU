@@ -29,7 +29,7 @@ class Wardrobe:
         
     def addClothes(self, Id):
         clothes = ""
-        with os.popen('python3 test.py  ' + Id + '.jpg') as pse:                            
+        with os.popen('python3 test.py  ' + str(Id) + '.jpg') as pse:                            
             for s in pse:
                 clothes = s
         speak("這是件"+clothes+"，適合穿於"+self.ClothesInfo[kind].get_value(clothes, "Intro"))
