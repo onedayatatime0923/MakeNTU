@@ -32,9 +32,9 @@ class Wardrobe:
         with os.popen('python3 test.py  ' + str(Id) + '.jpg') as pse:                            
             for s in pse:
                 clothes = s
+        kind = self.clothesOpants(clothes)
         speak("這是件"+clothes+"，適合穿於"+self.ClothesInfo[kind].get_value(clothes, "Intro"))
                 
-        kind = self.clothesOpants(clothes)
         degree = self.findSpace(kind)
         if degree == -1:
             print("Wardrobe of", kind, "is full. Add fail")
