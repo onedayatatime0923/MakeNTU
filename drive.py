@@ -11,6 +11,7 @@ class RemoteManager:
         self.dbx.users_get_current_account()
         self.url = "https://webdb-199518.appspot.com/"
         self.GET_VALUE = "getvalue"
+        self.STORE_VALUE = "storeavalue"
     def ls(self,path=''):
         return  self.dbx.files_list_folder(path).entries
     def get(self,path,local_path='./'):
@@ -21,9 +22,11 @@ class RemoteManager:
     def listen(self,option):
         r = requests.post(self.url+self.GET_VALUE, {"tag":option})
         text = r.json()
-        print(text)
+        #print(text)
         req = bool(int(text[2][1]))
         return req
+    def say(self,option,v):
+        requests.post(self.url+self.STORE_VALUE, {"tag":option,"value":v})
 
 if __name__ == '__main__':
     rm=RemoteManager()
