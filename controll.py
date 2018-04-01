@@ -6,50 +6,56 @@ import sys
 from drive import RemoteManager
 import time
 assert sys and os
+from autocam import *
 
 
 wd = Wardrobe()
 rm = RemoteManager()
 
-wd.addClothes("球褲")
-wd.addClothes("短褲")
-wd.addClothes("長褲")
-wd.addClothes("球褲")
-wd.addClothes("短褲")
-wd.addClothes("長褲")
-wd.addClothes("球褲")
+Id = wd.askId()
+wd.setClothes("球褲", 300, Id)
+Id = wd.askId()
+wd.setClothes("短褲", 60, Id)
+Id = wd.askId()
+wd.setClothes("長褲", 180, Id)
 
-wd.addClothes("西裝外套")
-wd.addClothes("球衣")
-wd.addClothes("短襯衫")
-wd.addClothes("大衣圍巾")
-wd.addClothes("吊嘎")
-wd.addClothes("外套")
+Id = wd.askId()
+wd.setClothes("西裝外套", 240, Id)
+Id = wd.askId()
+wd.setClothes("短襯衫", 300, Id)
+Id = wd.askId()
+wd.setClothes("大衣圍巾", 120, Id)
+Id = wd.askId()
+wd.setClothes("外套", 60, Id)
 
 print(wd.ClothesPos[0])
 print(wd.ClothesPos[1])
 
 while True:
-    if rm.listen("Recorded") == 1:
+    
+    if checkClothes():
+        Id = wd.askId()
+        takePhoto(Id)
+        addClothes(Id)
+        
+        
+    if rm.listen("Recorded") == True:
         time.sleep(11)
         print('downloading')
         score = []
         with open('score.txt','rb') as f:
             for s in f.readlines():
-                #print(s)
+                print(s)
                 s=str(s)[2:-3].strip('\n').split(',')
                 score.append((s[0],float(s[1])))
         print(score)
 
         feature = wd.chooseClothes(score)
-        print(feature)
-        print(len(feature))
-        for i in range(len(feature)):
-            rm.put('image_train/data/train/{}.JPG'.format(feature[i][0]),'s{}.JPG'.format(i+1))
-            rm.put('image_train/data/train/{}.JPG'.format(feature[i][1]),'p{}.JPG'.format(i+1))
-        rm.say('model',str(len(feature)))
-        while len(feature)>0:
-            index = rm.listen("index")
+        for i in range(1,len(feature)+1):
+            rm.put(feature[i][0],'s{}.JPG'.format(i))
+            rm.put(feature[i][1],'p{}.JPG'.format(i))
+        while True:
+            index = rm.listen("Index")
             if index > 0:
                 wd.takeClothes(feature[index-1])
                 break

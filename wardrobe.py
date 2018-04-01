@@ -15,8 +15,25 @@ class Wardrobe:
         self.ClothesPos = [{0: [None, 0], 60: [None, 0], 120: [None, 0], 180: [None, 0], 240: [None, 0], 300: [None, 0]},
                            {0: [None, 0], 60: [None, 0], 120: [None, 0], 180: [None, 0], 240: [None, 0], 300: [None, 0]}]
         self.id = 0
+
+    def askId():
+        self.id += 1
+        return self.id - 1
+
+    def setClothes(self, clothes, degree, Id):
+        kind = self.clothesOpants(clothes)
+        self.ClothesPos[kind][degree][0] = clothes
+        self.ClothesPos[kind][degree][1] = Id
+        print("New clothes", clothes, "is added successfully at degree", degree)
         
-    def addClothes(self, clothes):
+        
+    def addClothes(self, Id):
+        clothes = ""
+        with os.popen('python3 test.py  ' + Id + '.jpg') as pse:                            
+            for s in pse:
+                clothes = s
+        speak("這是件"+clothes+"，適合穿於"+self.ClothesInfo[kind].get_value(clothes, "Intro"))
+                
         kind = self.clothesOpants(clothes)
         degree = self.findSpace(kind)
         if degree == -1:
@@ -24,11 +41,9 @@ class Wardrobe:
         else:
             self.moveto(kind, degree)
             self.ClothesPos[kind][degree][0] = clothes
-            self.ClothesPos[kind][degree][1] = self.id
-            self.id += 1
+            self.ClothesPos[kind][degree][1] = Id
             print("New clothes", clothes, "is added successfully at degree", degree)
-            speak("這是件"+clothes+"，適合穿於"+self.ClothesInfo[kind].get_value(clothes, "Intro"))
-        
+            
     def findSpace(self, kind):
         degree = self.degree[kind]
         canditate = [degree, (degree+60)%360, (degree+300)%360, (degree+120)%360, (degree+240)%360, (degree+180)%360]

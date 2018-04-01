@@ -3,7 +3,8 @@ import RPi.GPIO as GPIO
 import os
 
 
-thresholdDist = 20
+thresholdDist = 25
+detect = False
 
 def distance():
   dist = []
@@ -54,28 +55,15 @@ def distance():
   return sum(dist)/len(dist)
 
 def takePhoto(filename):
-  action = "fswebcam -p YUYV " + filename + ".jpg"
+  action = "fswebcam -p YUYV data/test/" + filename + ".jpg"
   os.system(action)
 
-detect = False
-latestDist = [100, 100, 100]
 
-while True:
-  del(latestDist[0])
-  latestDist.append(distance())
+def checkClothes():
+  latestDist = []
+  for i in range(5):
+    latestDist.append(distance())
+
   print(latestDist)
-  
   nearNum = sum(i < thresholdDist for i in latestDist)
- 
-  if not detect and nearNum >= 2:
-    detect = True
-    print("take photos!!")
-    takePhoto("clothes")
-    continue
-
-  if detect and nearNum <= 1:
-    detect = False
-
-  time.sleep(1)
-
-  print("")
+  return nearNum >= 4
