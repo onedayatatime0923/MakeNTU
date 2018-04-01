@@ -55,8 +55,9 @@ while True:
         for i in range(len(feature)):
             rm.put('data/test/'+str(feature[i][0])+'.jpg','s{}.JPG'.format(i+1))
             rm.put('data/test/'+str(feature[i][1])+'.jpg','p{}.JPG'.format(i+1))
-        while True:
-            index = rm.listen("Index")
+        rm.say('model',str(len(feature)))
+        while len(feature)>0:
+            index = rm.listen("index")
             if index > 0:
                 wd.takeClothes(feature[index-1])
                 break
