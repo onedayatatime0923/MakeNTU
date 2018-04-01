@@ -48,14 +48,11 @@ class Wardrobe:
     def chooseClothes(self, featureList):
         feature = []
         for i in range(3):
-            if featureList[i][1] > 0.45:
+            if featureList[i][1] > 0.48:
                 feature.append(featureList[i][0])
             else:
                 break
 
-        print("feature")
-        print(feature)
-        
         clothesList = list(self.ClothesPos[0].values())
         clothesList = [i[0] for i in clothesList]
         clothesList = list(filter(lambda a: a != None, clothesList))
@@ -65,9 +62,6 @@ class Wardrobe:
         pantsList = list(filter(lambda a: a != None, pantsList))
         pantsList = list(set(pantsList))
 
-        print("clothesList")
-        print(clothesList)
-
         clothesKeep = []
         pantsKeep = []
         for i in range(len(clothesList)):
@@ -75,10 +69,7 @@ class Wardrobe:
                 clothesKeep.append(clothesList[i])
         for i in range(len(pantsList)):
             if self.decideSuitable(pantsList[i], 1, feature):
-                pantsKeep.append(pantsList[i])
-
-        print("clothesKeep")
-        print(clothesKeep)       
+                pantsKeep.append(pantsList[i])   
             
         clothesData = (self.ClothesInfo[0].ix[clothesKeep])["Clothing"]
         for i in range(clothesData.size):
@@ -94,19 +85,12 @@ class Wardrobe:
                 for j in range(6):
                     if self.ClothesPos[1][60*j][0] in clothesData[clothes]:
                         finalList.append((self.ClothesPos[0][60*i][1], self.ClothesPos[1][60*j][1]))
-        print("finalList")
-        print(finalList)
         return finalList
 
 
     def decideSuitable(self, clothes, kind, ft):
         cft = (self.ClothesInfo[kind].loc[clothes])[1]
-        print("cft ")
-        print(cft)
-        print("ft")
-        print(ft)
         for i in range(len(ft)):
             if ft[i] not in cft:
-                print("ft: " + str(ft[i]) + " cft: " + str(cft))
                 return False
         return True
