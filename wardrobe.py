@@ -103,6 +103,8 @@ class Wardrobe:
 
     def decideSuitable(self, clothes, kind, ft):
         cft = (self.ClothesInfo[kind].loc[clothes])[1]
+        print("cft ")
+        print(cft)
         for i in range(len(ft)):
             if ft[i] not in cft:
                 return False
