@@ -48,7 +48,7 @@ class Wardrobe:
     def chooseClothes(self, featureList):
         feature = []
         for i in range(3):
-            if featureList[i][1] > 0.5:
+            if featureList[i][1] > 0.45:
                 feature.append(featureList[i][0])
             else:
                 break
@@ -68,7 +68,7 @@ class Wardrobe:
             if self.decideSuitable(clothesList[i], 0, feature):
                 clothesKeep.append(clothesList[i])
         if len(clothesKeep) is 0:
-            print("This wardrobe can not fit you, sorry")
+            clothesKeep = clothesList
         for i in range(len(pantsList)):
             if self.decideSuitable(pantsList[i], 1, feature):
                 pantsKeep.append(pantsList[i])
@@ -96,8 +96,3 @@ class Wardrobe:
             if ft[i] not in cft:
                 return False
         return True
-            
-
-'''
-wd = Wardrobe()
-'''
