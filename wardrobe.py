@@ -90,7 +90,18 @@ class Wardrobe:
         print(finalList)
         return finalList
 
-
+    def takeClothes(self, take):
+        for i in range(6):
+            if take[0] == clothesPos[0][60*i][1]:
+                clothesPos[0][60*i][0] = None
+                moveto(0, 60*i)
+                break
+        for i in range(6):
+             if take[1] == clothesPos[1][60*i][1]:
+                clothesPos[1][60*i][0] = None
+                moveto(0, 60*i)
+                break
+            
     def decideSuitable(self, clothes, kind, ft):
         cft = (self.ClothesInfo[kind].loc[clothes])[1]
         for i in range(len(ft)):
