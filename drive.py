@@ -21,6 +21,7 @@ class RemoteManager:
     def listen(self,option):
         r = requests.post(self.url+self.GET_VALUE, {"tag":option})
         text = r.json()
+        print(text)
         req = bool(int(text[2][1]))
         return req
 
