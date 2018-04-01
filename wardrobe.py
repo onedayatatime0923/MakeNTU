@@ -94,14 +94,14 @@ class Wardrobe:
         print(self.ClothesPos[0])
         print(self.ClothesPos[1])
         for i in range(6):
-            if take[0] == self.clothesPos[0][60*i][1]:
-                self.clothesPos[0][60*i][0] = None
+            if take[0] == self.ClothesPos[0][60*i][1]:
+                self.ClothesPos[0][60*i][0] = None
                 if self.degree[0] is not 60*i:
                     self.moveto(0, 60*i)
                 break
         for i in range(6):
-             if take[1] == self.clothesPos[1][60*i][1]:
-                self.clothesPos[1][60*i][0] = None
+             if take[1] == self.ClothesPos[1][60*i][1]:
+                self.ClothesPos[1][60*i][0] = None
                 if self.degree[1] is not 60*i:
                     self.moveto(0, 60*i)
                 break
