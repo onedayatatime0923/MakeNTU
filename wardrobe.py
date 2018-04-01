@@ -27,7 +27,7 @@ class Wardrobe:
             self.ClothesPos[kind][degree][1] = self.id
             self.id += 1
             print("New clothes", clothes, "is added successfully at degree", degree)
-            speak("這是件"+clothes+"，適合穿於"+self.ClothesInfo[kind].get_value(clothes, "Intro"))
+            #speak("這是件"+clothes+"，適合穿於"+self.ClothesInfo[kind].get_value(clothes, "Intro"))
         
     def findSpace(self, kind):
         degree = self.degree[kind]
