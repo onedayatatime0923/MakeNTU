@@ -36,7 +36,7 @@ while True:
         score = []
         with open('score.txt','rb') as f:
             for s in f.readlines():
-                print(s)
+                #print(s)
                 s=str(s)[2:-3].strip('\n').split(',')
                 score.append((s[0],float(s[1])))
         print(score)
