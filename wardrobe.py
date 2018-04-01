@@ -47,8 +47,8 @@ class Wardrobe:
 
     def chooseClothes(self, featureList):
         feature = []
-        for i in range(3):
-            if featureList[i][1] > 0.48:
+        for i in range(2):
+            if featureList[i][1] > 0.5:
                 feature.append(featureList[i][0])
             else:
                 break
