@@ -69,6 +69,7 @@ while True:
  
   if not detect and nearNum >= 2:
     detect = True
+    print("take photos!!")
     takePhoto("clothes")
     continue
 
