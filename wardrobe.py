@@ -16,7 +16,7 @@ class Wardrobe:
                            {0: [None, 0], 60: [None, 0], 120: [None, 0], 180: [None, 0], 240: [None, 0], 300: [None, 0]}]
         self.id = 0
 
-    def askId():
+    def askId(self):
         self.id += 1
         return self.id - 1
 
