@@ -42,10 +42,11 @@ while True:
         print(score)
 
         feature = wd.chooseClothes(score)
+        print(feature)
         for i in range(1,len(feature)+1):
             rm.put('image_train/data/train/'+feature[i][0],'s{}.JPG'.format(i))
             rm.put('image_train/data/train/'+feature[i][1],'p{}.JPG'.format(i))
-        while True:
+        while len(feature)>0:
             index = rm.listen("index")
             if index > 0:
                 wd.takeClothes(feature[index-1])
