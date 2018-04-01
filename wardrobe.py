@@ -52,9 +52,6 @@ class Wardrobe:
                 feature.append(featureList[i][0])
             else:
                 break
-
-        print("feature")
-        print(feature)
         
         clothesList = list(self.ClothesPos[0].values())
         clothesList = [i[0] for i in clothesList]
@@ -64,11 +61,6 @@ class Wardrobe:
         pantsList = [i[0] for i in pantsList]
         pantsList = list(filter(lambda a: a != None, pantsList))
         pantsList = list(set(pantsList))
-
-        print("clothesList")
-        print(clothesList)
-        print("pantsList")
-        print(pantsList)
         
         clothesKeep = []
         pantsKeep = []
@@ -85,13 +77,6 @@ class Wardrobe:
                 if clothesData[i][j] not in pantsKeep:
                     clothesData[i][j] = ""
             clothesData[i] = list(filter(lambda a: a != "", clothesData[i]))
-
-        print("clothesKeep")
-        print(clothesKeep)
-        print("pantsKeep")
-        print(pantsKeep)
-        print("clothesData")
-        print(clothesData)
         
         finalList = []
         for i in range(6):
@@ -107,9 +92,5 @@ class Wardrobe:
         cft = (self.ClothesInfo[kind].loc[clothes])[1]
         for i in range(len(ft)):
             if ft[i] not in cft:
-                print("ft")
-                print(str(ft[i]))
-                print("cft")
-                print(cft)
                 return False
         return True
