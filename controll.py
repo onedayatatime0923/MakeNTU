@@ -36,7 +36,7 @@ while True:
     if checkClothes():
         Id = wd.askId()
         takePhoto(Id)
-        addClothes(Id)
+        wd.addClothes(Id)
         
         
     if rm.listen("Recorded") == True:
