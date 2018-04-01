@@ -30,7 +30,7 @@ print(wd.ClothesPos[0])
 print(wd.ClothesPos[1])
 
 while True:
-    if rm.listen("Recorded") == True:
+    if rm.listen("Recorded") == 1:
         time.sleep(11)
         print('downloading')
         score = []

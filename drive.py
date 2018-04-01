@@ -23,7 +23,7 @@ class RemoteManager:
         r = requests.post(self.url+self.GET_VALUE, {"tag":option})
         text = r.json()
         print(text)
-        req = bool(int(text[2][1]))
+        req = int(text[2][1])
         return req
     def say(self,option,v):
         requests.post(self.url+self.STORE_VALUE, {"tag":option,"value":v})
