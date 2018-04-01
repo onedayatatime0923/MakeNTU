@@ -46,7 +46,7 @@ while True:
             rm.put(feature[i][0],'s{}.JPG'.format(i))
             rm.put(feature[i][1],'p{}.JPG'.format(i))
         while True:
-            index = rm.listen("Index")
+            index = rm.listen("index")
             if index > 0:
                 wd.takeClothes(feature[index-1])
                 break
