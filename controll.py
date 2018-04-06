@@ -6,7 +6,7 @@ import sys
 from drive import RemoteManager
 import time
 assert sys and os
-from autocam import *
+#from autocam import *
 
 
 wd = Wardrobe()
@@ -33,10 +33,12 @@ print(wd.ClothesPos[1])
 
 while True:
     
+    '''
     if checkClothes():
         Id = wd.askId()
         takePhoto(Id)
         wd.addClothes(Id)
+        '''
         
         
     if rm.listen("Recorded") == True:
