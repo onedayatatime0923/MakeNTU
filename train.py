@@ -21,13 +21,21 @@ trainer = training_api.TrainingApi(training_key)
 print ("Creating project...")
 project = trainer.create_project("Clothes Recognition")
 
+
+trainer = training_api.TrainingApi(training_key)
+
+# Create a new project
+print ("Creating project...")
+project = trainer.create_project("My Project")
 ''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''
 '''''''''''''''       make tags                                '''''''''
 ''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''
 
 print ("Making tags...")
 tags={}
+print(project.id)
 for label in os.listdir(train_dir):
+    print(label)
     tags[label]=trainer.create_tag(project.id, label)
 
 ''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''

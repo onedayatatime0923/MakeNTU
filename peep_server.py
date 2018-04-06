@@ -40,4 +40,3 @@ while True:
             for i in score:
                 f.write('{},{}\n'.format(i[0].name,i[1]))
                 print('{},{}'.format(i[0].name,i[1]))
-        os.system('sshpass -p raspberry scp score.txt pi@10.1.30.178:MakeNTU')
